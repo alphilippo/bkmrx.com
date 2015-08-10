@@ -1,0 +1,27 @@
+TODO
+
+- infinite scroll for bkmrx page
+- multi tag filtering
+- Implement integration for other third party services such as Facebook, Readability, etc
+- Prettify profile pages
+- Implement 'follow' function
+- Move away from default bootstrap theme
+- Allow users to set a default privacy setting for all imported bookmarks
+- improved usability
+- use # to search for tags in search results - ie #twis etc
+- add site: operator
+- addons - ie people can create plugins (ie metacpan) that plugs in faves from sites of their choice..
+
+- search & browse sub-sets of domains. ie CPAN as a use case - favourite modules/shortcuts etc
+- could we do bundles? Ie Bundles of links to form concepts; could be done automatically by defining related tags, or manually by just say adding a bunch of links and saying 'these are related to a concept, ie bkmrx design ideas'
+- don't want to overload with 'features' as need to remain simple, but think about how it's displayed
+
+DB Changes to make a better site:
+
+- store all bkmrx data in ES, worry less about duplication
+ -- url, plain text content, screengrab, etc
+- user data can be still mongod for now
+
+Cool features:
+
+- popular sites extensions; ie slide previews from slideshare etc?

@@ -1,0 +1,20 @@
+<div class="col-sm-2" style="border-right:1px solid #efefef">
+	<h5>me</h5>
+	<ul class="nav nav-stacked bkx-nav-side">
+		<li<% if (url_for eq '/me/') { %> class="active"<% } %>><a href="/me/"><i class="fa fa-pencil"></i> edit profile</a></li>
+		<li><a href="/<%= session 'username' %>"><i class="fa fa-user"></i> view profile</a></li>
+	</ul>
+	<hr>
+	<h5>tools</h5>
+	<ul class="nav nav-stacked bkx-nav-side">
+		<li<% if (url_for eq '/me/import') { %> class="active"<% } %>><a href="/me/import"><i class="fa fa-upload"></i> import links</a></li>
+		<li<% if (url_for eq '/me/backup') { %> class="active"<% } %>><a href="/me/backup"><i class="fa fa-download"></i> backup links</a></li>
+		<li<% if (url_for eq '/addons') { %> class="active"<% } %>><a href="/addons"><i class="fa fa-wrench"></i> addons</a></li>
+	</ul>
+	<hr>
+	<!--h5>admin</h5>
+	<ul class="nav nav-stacked bkx-nav-side">
+		<li<% if (url_for eq '/me/edit-tags') { %> class="active"<% } %>><a href="/me/edit-tags"><i class="fa fa-tags"></i> edit tags</a></li>
+		<li<% if (url_for eq '/me/preferences') { %> class="active"<% } %>><a href="/me/preferences"><i class="fa fa-tags"></i> preferences</a></li>
+	</ul-->
+</div>

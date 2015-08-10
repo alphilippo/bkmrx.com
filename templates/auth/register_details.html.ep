@@ -1,0 +1,53 @@
+% layout 'default';
+% title 'register';
+
+<div class="row">
+	<div class="col-sm-12">
+		<h2>Almost there!</h2>
+		<p>Just choose a username &amp; you're ready to go!</p>
+		<form role="form" class="form-horizontal" novalidate="novalidate" method="post" action="/register-details">
+			<div class="form-group">
+				<label class="col-sm-1">username</label>
+				<div class="col-sm-3">
+					<input type="text" name="username" class="form-control" value="" id="username">
+				</div>
+				<div id="status"></div>
+			</div>
+			<!--div class="form-group">
+				<label class="col-sm-1">email</label>
+				<div class="col-sm-3">
+					<input type="text" name="email" class="form-control">
+				</div>
+			</div-->
+			<div class="form-group" id="create">
+				<div class="col-sm-offset-1 col-sm-3">
+					<button type="submit" class="btn btn-primary">Register &raquo;</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+<script>
+$(document).ready(function() {
+	$('#username').keyup(function() {
+		if ($(this).val() != '') {
+			$.ajax({
+				url : '/_checkname',
+				data : 'username=' + $(this).val(),
+				success: function(data) {
+					if (data == 'ok') {
+						$('#create').show();
+						$('#status').html('<span class="label label-success">ok</span>');
+					} else if (data == 'taken') {
+						$('#status').html('<span class="label label-danger">taken</span>');
+						$('#create').hide();
+					}
+				}
+			});
+		} else {
+			$('#status').html('');
+		}
+	});
+});
+</script>

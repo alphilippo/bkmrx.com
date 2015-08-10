@@ -1,0 +1,76 @@
+% layout 'default';
+% title 'settings';
+%= include 'parts/account-side'
+<div class="col-sm-5">
+	% if (my $msg = flash 'msg') {
+		<div class="alert alert-info"><%= $msg %></div>
+	% }
+	<div id="profile">
+		<div>
+			<h3 style="display:inline;"><img src="<%= $user_details->{'gravatar'} %>" alt="" />&nbsp;&nbsp;&nbsp;<%= session 'username' %></h3>
+			
+		</div>
+		<hr />
+		<form method="post" class="form-horizontal" role="form">
+		<fieldset>
+			<div class="form-group">
+				<label class="control-label col-sm-3" for="name">private by default..</label>
+				<div class="col-sm-6">
+					<input type="text" name="name" value="<%= $user_details->{'name'} %>" id="name" placeholder="full name" class="form-control">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-3" for="email">Email</label>
+				<div class="col-sm-6">
+					<input type="email" id="email" name="email" value="<%= $user_details->{'email'} %>" disabled="disabled"  class="form-control">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-3" for="website">Website</label>
+				<div class="col-sm-6">
+					<input type="text" name="website" value="<%= $user_details->{'website'} %>" class="form-control">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="github" class="control-label col-sm-3">Google+</label>
+				<div class="col-sm-6">
+					<div class="input-group">
+						<span class="input-group-addon">+</span>
+						<input type="text" name="google" value="<%= $user_details->{'google_plus'} %>" class="form-control">
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="twitter" class="control-label col-sm-3">Twitter</label>
+				<div class="col-sm-6">
+					<div class="input-group">
+						<span class="input-group-addon">@</span>
+						<input type="text" name="twitter" value="<%= $user_details->{'twitter'} %>" class="form-control">
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="github" class="control-label col-sm-3">GitHub</label>
+				<div class="col-sm-6">
+					<div class="input-group">
+						<span class="input-group-addon">@</span>
+						<input type="text" name="github" value="<%= $user_details->{'github'} %>" class="form-control">
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="reddit" class="control-label col-sm-3">Reddit</label>
+				<div class="col-sm-6">
+					<div class="input-group">
+						<input type="text" name="reddit" value="<%= $user_details->{'reddit'} %>" class="form-control" placeholder="json feed from prefs -> rss feeds -> likes.json">
+					</div>
+				</div>
+			</div>
+			<div class="form-actions" style="text-align:right">
+				<input type="submit" class="btn btn-primary" value="Update &raquo;" />
+			</div>
+			</fieldset>
+
+		</form>
+	</div>
+</div>

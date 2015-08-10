@@ -1,0 +1,19 @@
+<ul class="nav navbar-nav">
+	<li<% if (url_for eq '/bkmrx') { %> class="active"<% } %>><a href="/bkmrx"><i class="fa fa-bookmark"></i> my bkmrx</a></li>
+	<li><a data-toggle="modal" href="/ajax/modal"><i class="fa fa-plus"></i> add bkmrk</a></li>
+</ul>
+<ul class="nav navbar-nav navbar-right">
+	<li class="dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <%= session 'username' %><b class="caret"></b></a>
+		<ul class="dropdown-menu">
+			<li><a href="/<%= session 'username' %>"><i class="fa fa-globe"></i> My Profile</a></li>
+			<li><a href="/me/"><i class="fa fa-wrench"></i> Account</a></li>
+			<li><a href="/logout"><i class="fa fa-power-off"></i> Logout</a></li>
+		</ul>
+	</li>
+</ul>
+<form action="/search/" class="navbar-form navbar-right" role="search">
+	<div class="form-group">
+		<input type="search" name="q" id="searchbox" value="<% if (param 'q') { %><%= param 'q' %><% } %>" class="form-control" placeholder="search">
+	</div>
+	<button type="submit" class="btn btn-primary">Search</button>
+</form>

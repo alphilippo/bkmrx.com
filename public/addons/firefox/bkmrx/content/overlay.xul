@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="chrome://bkmrx/skin/css/overlay.css" type="text/css"?>
+
+<overlay id="bkmrx-overlay"  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+    <toolbarpalette id="BrowserToolbarPalette">
+        <toolbarbutton
+            id="bkmrx-toolbar-save"
+            class="toolbarbutton-1"
+            tooltiptext="save"
+            label="Save"
+            oncommand="rdb.firefox.overlay.save_url();"
+        />
+    </toolbarpalette>
+
+    <!-- Don't try to load jquery here, use the loader functions provided by
+         firefox. For some reason it just causes everything else to fail -->
+    <script type="application/x-javascript" src="chrome://bkmrx/content/lib/js/Keanu-0.2.js"/>
+
+    <script type="application/x-javascript" src="chrome://bkmrx/content/lib/js/rdb.extensions.js"/>
+    <script type="application/x-javascript" src="chrome://bkmrx/content/js/rdb.firefox.js"/>
+    <script type="application/x-javascript" src="chrome://bkmrx/content/js/rdb.firefox.overlay.js"/>
+
+</overlay>

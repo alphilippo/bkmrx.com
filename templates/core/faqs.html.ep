@@ -1,0 +1,21 @@
+% layout 'default';
+% title 'faqs';
+<div class="row">
+	<div class="col-sm-1">&nbsp;</div>
+	<div class="col-sm-7">
+		<h1>Frequently Asked Questions</h1>
+		<h2>How do I add bookmarks?</h2>
+		<p>There are several ways to add bookmarks to your account:</p>
+		<ul>
+			<li><b>On-site</b> - there is an 'Add Bookmark' link at the top of every page</li>
+			<li><b>Bookmarklet</b> - compatible with Firefox, Chrome and iOS the <a href="/addons">browser bookmarklet</a> allows
+			easy bookmarking of any web page</li>
+			<li><b>Social services</b> - by linking your Twitter, Google+, Github or Reddit accounts, you can automatically pull
+			in the URLs you share or save on those services</li>
+			<li><b>Import</b> - you can import bookmarks form other services such as delicious.com or from your browser bookmarks</li>
+		</ul>
+		<h2>Why aren't my social bookmarks showing?</h2>
+		<p>It may take up to 24 hours for your social accounts to be linked up to the service.</p>
+		<p>Unfortunately it's not currently possible to import all of your previous social shares, but any shared from the point you add your account will be tracked.</p>
+	</div>
+</div>

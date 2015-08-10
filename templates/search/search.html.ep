@@ -1,0 +1,83 @@
+% layout 'default';
+% title 'search results';
+
+<div class="row">
+	<div class="col-sm-2" style="border-right:1px solid #efefef">
+		<h5>Filter results</h5>
+		<ul class="nav nav-pills nav-stacked bkx-nav-side">
+			<li<% unless (param('type')) { %> class="active"<% } %>><a href="/search/?q=<%= $results->{'query'} %>"><i class="fa fa-user"></i> my bkmrx</a></li>
+			<li<% if ((param('type')) && (param('type') eq 'all')) { %> class="active"<% } %>><a href="/search/?q=<%= $results->{'query'} %>&amp;type=all"><i class="fa fa-globe"></i> all links</a></li>
+			<li id="source_filter"></li>
+		</ul>
+		<hr>
+	</div>
+	<div class="col-sm-9">
+		<div class="row">
+			<form action="/search/" role="search">
+				<div class="form-group col-sm-6">
+					% if (param 'type') {
+						<input type="hidden" name="type" value="<%= param 'type' %>">
+					% }
+					<input type="search" name="q" value="<% if (param 'q') { %><%= param 'q' %><% } %>" class="form-control" placeholder="search" autofocus>
+				</div>
+				<button type="submit" class="btn btn-primary">Search</button>
+			</form>
+		</div>
+		% if ( $results->{'total_results'} > 0 ) {
+		<p style="color:gray;"><%= $results->{'first_result'} . '-' . $results->{'last_result'} %>
+	    	of <%= $results->{'total_results'} %> results
+        	% if ((param('type')) && (param('type') eq 'twitter')) {
+        		in my tweets
+        	% } elsif ((param('type')) && (param('type') eq 'github')) {
+        		in my github stars
+        	% }
+	    </p>
+	    % } else {
+	    	<h2>No results...</h2>
+	    	<div class='alert alert-danger'>No results for <b><%= $results->{'query'} %></b> yet - add some more bookmarks and try again later...</div>
+	    % }
+		% for my $res (@{$results->{'results'}}) {
+			<div class="bkxres" id="<%= $res->{'url_id'} %>">
+				% my $title = $res->{'title'} || '{{title not found!}}';
+				<h3><a href="<%= $res->{'url'} %>"><%== $title %></a></h3>
+				<span class="desc"><%== $res->{'snippet'}; %></span>
+				<span class="url"><%== $res->{'display_url'}; %></span>
+				<div class="faves" id="fave-<%= $res->{'url_id'} %>"></div>
+				<div class="added_by" user="<%= $res->{'added_by'} %>"></div>
+			</div>
+		% }
+		<div>
+		    <ul class="pagination">
+		    	<%== $pages %>
+		    </ul>
+		</div>
+	</div>
+</div>
+<script>
+	$(document).ready(function() {
+		updateSearchSources('<%= $results->{'query'} %>');
+		addBkmrx();
+	});
+
+	function addBkmrx() {
+		var url_arr = <%== dumper $url_ids %>;
+		$.ajax({
+			url: '/ajax/json_serp',
+
+			data: { urls : url_arr },
+			dataType: "json",
+			type: 'POST',
+			success: function(result) {
+				$.each(result, function(id) {
+					var h3 = $('#' + result[id] + ' h3 a').text();
+					$('#fave-' + result[id]).html('<button class="btn btn-primary btn-xs" ' +
+						'onclick="addBkx(\'' + result[id] + '\',\'' +
+						 h3 + '\');" ' +
+						'id=\'' + result[id] + '\'>+ add to my bkmrx</button>');
+				});
+			}
+		});
+	}
+</script>
+
+						

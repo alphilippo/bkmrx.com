@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+  <Description about="urn:mozilla:install-manifest">
+    <em:id>{6005d9b1-d115-485a-a92a-3f6453ca3fe2}</em:id>
+    <em:type>2</em:type>
+    <em:version>2.4</em:version>
+    <em:name>Readability</em:name>
+    <em:description>Readability is a web and mobile app that zaps clutter and saves web articles in a comfortable reading view.</em:description>
+    <em:creator>Arc90</em:creator>
+    <em:homepageURL>http://www.readability.com/</em:homepageURL>
+    <em:iconURL>chrome://readability/skin/img/icon-32.png</em:iconURL>
+    <em:optionsURL>chrome://readability/content/options.xul</em:optionsURL>
+    <em:targetApplication>
+      <Description>
+        <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id> <!-- Firefox -->
+        <em:minVersion>4.0</em:minVersion>
+        <em:maxVersion>15.*</em:maxVersion>
+      </Description>
+    </em:targetApplication>
+  </Description>
+</RDF>

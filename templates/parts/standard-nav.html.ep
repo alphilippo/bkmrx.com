@@ -1,0 +1,9 @@
+<ul class="nav pull-right navbar-nav">
+	<li><a href="/login"><i class="fa fa-power-off"></i> login</a></li>
+</ul>
+<form action="/search/" class="navbar-form navbar-right" role="search">
+	<div class="form-group">
+		<input type="search" name="q" id="searchbox" value="<% if (param 'q') { %><%= param 'q' %><% } %>" class="form-control" placeholder="search">
+	</div>
+	<button type="submit" class="btn">Search</button>
+</form>

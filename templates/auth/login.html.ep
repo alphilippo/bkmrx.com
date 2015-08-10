@@ -1,0 +1,121 @@
+% layout 'default';
+% title 'login';
+<div class="row">
+	<div class="col-sm-12">
+		<legend>Sign up or log in below</legend>
+		% if (my $msg = flash 'error') {
+			<div class="alert alert-danger">
+				%= $msg
+			</div>
+		% } elsif ($msg = flash 'msg') {
+			<div class="alert alert-info">
+				%= $msg
+			</div>
+		% }
+		<input type="radio" name="register" value="0" id="existing" checked="checked" /> <label for="existing" style="display:inline;">I am an existing user</label><br/>
+		<input type="radio" name="register" value="1" id="new-user" /> <label for="new-user" style="display:inline;">I am a new user</label><br/>
+
+		<form method="post" id="login-form" action="/login" class="form-horizontal" novalidate="novalidate" role="form">
+		<fieldset>
+		<input type="hidden" name="referer" value="<%= $self->tx->req->headers->referrer %>" />
+		<div class="form-group" id="tr-email">
+			<label for="email" class="control-label col-sm-3">Email / Username</label>
+			<div class="col-sm-3">
+				<input type="email" name="email" id="email" class="form-control">
+			</div>
+		</div>
+		<div class="form-group" id="tr-password">
+			<label for="pass" class="control-label col-sm-3">Password</label>
+			<div class="col-sm-3">
+				<input type="password" name="pass" id="pass" class="form-control">
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-sm-offset-3 col-sm-9">
+				<button class="btn btn-primary" type="submit" id="submit">Log in &raquo;</button>
+			</div>
+		</div>
+		</fieldset>
+		</form>
+
+		<form method="post" id="register-form" action="/register" style="display:none;" class="form-horizontal" novalidate="novalidate">
+		<fieldset>
+
+		<div class="form-group" id="div-username" style="display:none">
+			<label for="username" class="control-label col-sm-3">Username</label>
+			<div class="col-sm-3">
+				<input type="text" name="username" id="username" class="form-control">
+			</div>
+			<div id="status"></div>
+		</div>
+		<div class="form-group" id="div-email" style="display:none">
+			<label for="email" class="control-label col-sm-3">Email</label>
+			<div class="col-sm-3">
+				<input type="email" name="email" id="r-email" class="form-control">
+			</div>
+		</div>
+		<div class="form-group" id="div-password" style="display:none">
+			<label for="pass" class="control-label col-sm-3">Password</label>
+			<div class="col-sm-3">
+				<input type="password" name="pass" id="r-pass" class="form-control">
+			</div>
+		</div>
+		<div class="form-group" id="div-confirm" style="display:none">
+			<label for="pass2" class="control-label col-sm-3">Confirm Password</label>
+			<div class="col-sm-3">
+				<input type="password" name="pass2" id="pass2" class="form-control">
+			</div>
+		</div>
+
+		<div class="form-group" id="create">
+			<div class="col-sm-offset-3 col-sm-3">
+				<button class="btn btn-primary" type="submit" id="register" style="display:none;">Register &raquo;</button>
+			</div>
+		</div>
+		</fieldset>
+		</form>
+		<p><a href="/forgot">forgot password?</a></p>
+		<hr>
+		<h3>Or...</h3>
+		<div class="col-sm-3">
+			<a href="/auth/twitter/authenticate" class="btn btn-social btn-block btn-twitter"><i class="fa fa-twitter"></i> Login with Twitter</a>
+		</div>
+		<div class="col-sm-3">
+			<a href="/auth/google/authenticate" class="btn btn-social btn-block btn-social btn-block btn-google-plus"><i class="fa fa-google-plus"></i> Login with Google</a>
+		</div>
+		<div class="col-sm-3">
+			<a href="/auth/github/authenticate" class="btn btn-social btn-block btn-github"><i class="fa fa-github"></i> Login with Github</a>
+		</div>
+		<div class="col-sm-3">
+			<a href="/auth/facebook/authenticate" class="btn btn-social btn-block btn-facebook"><i class="fa fa-facebook"></i> Login with Facebook</a>
+		</div>
+
+	</div>
+</div>
+
+<script src="/js/jquery.validate.js"></script>
+<script src="/js/bkx-validate-script.js"></script>
+<script>
+$(document).ready(function() {
+	$('#username').keyup(function() {
+		if ($(this).val() != '') {
+			$.ajax({
+				url : '/_checkname',
+				data : 'username=' + $(this).val(),
+				success: function(data) {
+					if (data == 'ok') {
+						$('#create').show();
+						$('#status').html('<span class="label label-success">ok</span>');
+					} else if (data == 'taken') {
+						$('#status').html('<span class="label label-danger">taken</span>');
+						$('#create').hide();
+					}
+				}
+			});
+		} else {
+			$('#status').html('');
+		}
+	});
+});
+</script>

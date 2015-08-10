@@ -1,0 +1,17 @@
+#readability-toolbar-read { list-style-image: url("chrome://readability/skin/img/read-large.png"); }
+#readability-toolbar-read:hover { list-style-image: url("chrome://readability/skin/img/read-large-hover.png"); }
+
+#readability-toolbar-save { list-style-image: url("chrome://readability/skin/img/save-large.png"); }
+#readability-toolbar-save:hover { list-style-image: url("chrome://readability/skin/img/save-large-hover.png"); }
+
+#readability-toolbar-kindle { list-style-image: url("chrome://readability/skin/img/icon-kindle-large.png"); }
+#readability-toolbar-kindle:hover { list-style-image: url("chrome://readability/skin/img/icon-kindle-large-hover.png"); }
+
+toolbar[iconsize="small"] #readability-toolbar-read { list-style-image: url("chrome://readability/skin/img/read-small.png"); }
+toolbar[iconsize="small"] #readability-toolbar-read:hover { list-style-image: url("chrome://readability/skin/img/read-small-hover.png"); }
+
+toolbar[iconsize="small"] #readability-toolbar-save { list-style-image: url("chrome://readability/skin/img/save-small.png"); }
+toolbar[iconsize="small"] #readability-toolbar-save:hover { list-style-image: url("chrome://readability/skin/img/save-small-hover.png"); }
+
+toolbar[iconsize="small"] #readability-toolbar-kindle { list-style-image: url("chrome://readability/skin/img/icon-kindle-small.png"); }
+toolbar[iconsize="small"] #readability-toolbar-kindle:hover { list-style-image: url("chrome://readability/skin/img/icon-kindle-small-hover.png"); }

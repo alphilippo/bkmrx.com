@@ -1,0 +1,47 @@
+% layout 'default';
+% title 'about';
+<div class="row">
+	<div class="col-sm-1">&nbsp;</div>
+	<div class="col-sm-7">
+		<h1>about bkmrx.com</h1>
+		<h2>bookmarking is broken</h2>
+		<p>bkmrx is a (small) attempt to make online bookmarking better. 
+		bkmrx allows you to be the curator of your own search engine, and your own links. Unlike with
+		Google, Bing and others, you can define your own <a href="http://www.thefilterbubble.com/">filter bubble</a>.</p>
+		<h2>Features</h2>
+		<p>Comparison with other bookmarking services:</p>
+		<table class="table table-bordered table-striped">
+			<tr><th>Feature</th><th>bkmrx.com</th><th>bkmrx.org</th><th>delicious</th><th>diigo</th><th>Google Bookmarks</th></tr>
+			<tr><td>Social bookmarking</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td><td>No</td></tr>
+			<tr><td>Open Source</td><td>No</td><td>Yes</td><td>No</td><td>No</td><td>No</td></tr>
+			<tr><td>Full text search of bookmarks</td><td>Yes</td><td>Yes (public only)</td><td>No</td><td>Yes (paid)</td><td>Yes</td></tr>
+			<tr><td><i class="fa fa-twitter"></i> Search your tweets</td><td>Yes</td><td>Yes</td><td>No</td><td>No</td><td>No</td></tr>
+			<tr><td><i class="fa fa-github"></i> Search your Github stars</td><td>Yes</td><td>Yes</td><td>No</td><td>No</td><td>No</td></tr>
+			<tr><td><i class="fa fa-reddit"></i> Search your Reddit likes</td><td>Yes</td><td>No</td><td>No</td><td>No</td><td>No</td></tr>
+			<tr><td><i class="fa fa-google-plus"></i> Search your +1s</td><td>Yes</td><td>No</td><td>No</td><td>No</td><td>No</td></tr>
+			<!--tr><td><i class="fa fa-facebook"></i> Search your Facebook links</td><td>No</td><td>No</td><td>No</td><td>No</td><td>No</td></tr-->
+			<tr><td>Tagging</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+			<tr><td>Intelligent tags</td><td>Yes</td><td>No</td><td>No</td><td>No</td><td>No</td></tr>
+			<tr><td>Filter by source</td><td>Yes</td><td>Yes</td><td>Yes (limited)</td><td>No</td><td>No</td></tr>
+			<tr><td>Import from other sites</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td><td>No</td></tr>
+			<tr><td>Export to other sites</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+			<tr><td><i class="fa fa-twitter"></i> Auto-add links from Twitter</td><td>Yes</td><td>Yes</td><td>Yes</td><td>No</td><td>No</td></tr>
+			<tr><td><i class="fa fa-github"></i> Auto-add links from Github</td><td>Yes</td><td>Yes</td><td>No</td><td>Yes (favourites)</td><td>No</td></tr>
+			<tr><td><i class="fa fa-facebook"></i> Auto-add links from Facebook</td><td>No</td><td>Yes</td><td>Yes</td><td>No</td><td>No</td></tr>
+			<tr><td>Cross-browser bookmarklet</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+			<tr><td>Private by default option</td><td>No</td><td>No</td><td>No</td><td>Yes</td><td>Yes</td></tr>
+			<tr><td>Firefox add-on</td><td>No</td><td>No</td><td>Yes</td><td>Yes</td><td>No</td></tr>
+			<tr><td>Google Chrome add-on</td><td>No</td><td>No</td><td>Yes</td><td>Yes</td><td>No</td></tr>
+			<tr><td>API</td><td>Yes</td><td>No</td><td>Yes</td><td>Yes</td><td>No</td></tr>
+		</table>
+	</div>
+</div>
+<script type="text/javascript">
+$("td").text(function(index, text) {
+	if (text.match(/^Yes/)) {
+		$(this).css('color', 'green');
+	} else if (text.match(/^No/)) {
+		$(this).css('color', 'red');
+	}
+});
+</script>

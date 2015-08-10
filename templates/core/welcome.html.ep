@@ -1,0 +1,36 @@
+% layout 'default';
+% title 'Store & search your bookmarks';
+<%# inspiration: http://www.shyahi.com/ %>
+<div class="row">
+		<div class="col-sm-12">
+		<div class="row">
+			<div class="col-sm-6">
+				<h2>reclaim your bookmarks!</h2>
+				
+			</div>
+			<div class="col-sm-6">
+				<h3>where do i sign up?</h3>
+				<p>you can <a href="/login" class="btn btn-medium btn-primary">sign up here!</a></p>
+			</div>
+		</div>
+		
+		<section class="row featured">
+			<div class="col-sm-12">
+				<header class="page-header"><h2>features</h2></header>
+				<div class="row">
+					<div class="col-sm-6"><h2>enterprise search</h2><p>flexible, powerful search built around your links to recover links you've saved or discover new ones from other users.</p></div>
+					<div class="col-sm-6"><h2>import</h2><p>your existing delicious &amp; firefox bookmarks</p></div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6"><h2>integration</h2><p>automatically pull your shared links from <i class="fa fa-twitter" style="color:#9AE4E8;"></i> twitter, <i class="fa fa-google-plus" style="color:;"></i> google+, <i class="fa fa-github" style="color:;"></i> github &amp; <i class="fa fa-reddit" style="color:;"></i> reddit</p></div>
+					<div class="col-sm-6"><h2>backup</h2><p>save your links in an industry compatible format</p></div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6"><h2>share</h2><p> and search other people's bookmarks</p></div>
+					<div class="col-sm-6"><h2>bookmarklets</h2><p>for Firefox, Chrome and iOS so you can add links from anywhere</p></div>
+				</div>
+			</div>
+		</section>
+		
+	</div>
+</div>

@@ -1,0 +1,73 @@
+<div class="modal-dialog">
+	<div class="modal-content">
+		<div class="modal-header"><a class="close" data-dismiss="modal">&times;</a>
+			<h4>Add a Bookmark</h4>
+		</div>
+		<div class="modal-body">
+			<form name="submiturl" id="submiturl" class="form-horizontal" method="post">
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="url">URL:</label>
+					<div class="col-sm-8">
+						<input type="url" name="url" placeholder="http://" id="step1url" class="form-control" autofocus>
+						<i class="loading fa fa-refresh fa-spin" style="display:none"></i>
+						<label id="urlsub_error" class="hidden">Please enter a valid URL</label>
+					</div>
+				</div>
+			</form>
+
+			<div id="urlform2" style="display:none">
+				<form name="submiturl_2" id="submiturl_2" action="/me/add" method="post" role="form" class="form-horizontal">
+				<fieldset>
+				<div id="callback">
+					<p id="ret_url"></p>
+					<p id="url_msg"></p>
+				</div>
+					<input type="hidden" name="ajaxadd" value="1" />
+					<div class="form-group">
+						<label for="title" class="col-sm-2">Title</label>
+						<div class="col-sm-4">
+							<input type="text" id="title" name="title" value="" tabindex="1" style="width:355px" class="form-control">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2">Description</label>
+						<div class="col-sm-4">
+							<textarea id="desc" name="desc" style="width:355px" tabindex="2" class="form-control"></textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2">Tags</label>
+						<div class="col-sm-4">
+							<div id="addtags">
+								<input name="tags[]" class="tag form-control">
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<label class="col-sm-2">Privacy</label>
+						<div class="col-sm-4" id="privacy">
+							<div class="radio">
+							  <label>
+							    <input type="radio" name="status" value="0" checked tabindex="4">
+							    Public
+							  </label>
+							</div>
+							<div class="radio">
+							  <label>
+							    <input type="radio" name="status" value="1" tabindex="4">
+							    Private
+							  </label>
+							</div>
+						</div>
+					</div>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-primary" data-toggle="button" data-loading-text="Loading URL..." autocomplete="off" id="step1sub">Add URL</button>
+			<button class="btn btn-primary" data-toggle="button" id="step2sub" style="display:none">add bookmark</button>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="/js/bkx-modal.js"></script>

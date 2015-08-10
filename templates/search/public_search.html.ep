@@ -1,0 +1,38 @@
+% layout 'default';
+% title 'search results';
+<div class="row">
+	<div class="col-sm-12">
+		<div class="row">
+			<form action="/search/" role="search">
+				<div class="form-group col-sm-6">
+					% if (param 'type') {
+						<input type="hidden" name="type" value="<%= param 'type' %>">
+					% }
+					<input type="search" name="q" value="<% if (param 'q') { %><%= param 'q' %><% } %>" class="form-control" placeholder="search" autofocus>
+				</div>
+				<button type="submit" class="btn btn-primary">Search</button>
+			</form>
+		</div>
+		% if ( $results->{'total_results'} > 0 ) {
+		<p style="color:gray;"><%= $results->{'first_result'} . '-' . $results->{'last_result'} %>
+	    	of <%= $results->{'total_results'} %> results
+	    </p>
+	    % } else {
+	    	<h2>No results yet...</h2>
+	    	<div class='alert alert-danger'>No results for <b><%= $results->{'query'} %></b> yet - <a href="/login">sign in</a> &amp; add some bookmarks and try again later...</div>
+	    % }
+		% for my $res (@{$results->{'results'}}) {
+			<div class="bkxres">
+				% my $title = $res->{'title'} || '{{title not found!}}';
+				<h3><a href="<%= $res->{'url'} %>"><%== $title %></a></h3>
+				<span class="desc"><%== $res->{'snippet'}; %></span>
+				<span class="url"><%== $res->{'display_url'}; %></span>
+			</div>
+		% }
+		<div>
+		    <ul class="pagination">
+		    	<%== $pages %>
+		    </ul>
+		</div>
+	</div>
+</div>

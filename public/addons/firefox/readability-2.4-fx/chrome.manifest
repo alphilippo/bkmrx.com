@@ -1,0 +1,5 @@
+content  readability                                   content/
+skin     readability   classic/1.0                     skin/
+
+overlay  chrome://browser/content/browser.xul          chrome://readability/content/overlay.xul
+style	 chrome://global/content/customizeToolbar.xul  chrome://readability/skin/css/overlay.css

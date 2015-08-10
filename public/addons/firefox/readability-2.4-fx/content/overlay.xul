@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="chrome://readability/skin/css/overlay.css" type="text/css"?>
+
+<overlay id="readability-overlay"  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+    <!--  Right now we are including both buttons as one toolbar pallete -->
+    <toolbarpalette id="BrowserToolbarPalette">
+        <toolbarbutton
+            id="readability-toolbar-read"
+            class="toolbarbutton-1"
+            tooltiptext="Read Now"
+            label="Read"
+            oncommand="rdb.firefox.overlay.read_now();"
+        />
+        <toolbarbutton
+            id="readability-toolbar-save"
+            class="toolbarbutton-1"
+            tooltiptext="Read Later"
+            label="Save"
+            oncommand="rdb.firefox.overlay.read_later();"
+        />
+        <toolbarbutton
+            id="readability-toolbar-kindle"
+            class="toolbarbutton-1"
+            tooltiptext="Send to Kindle"
+            label="Send to Kindle"
+            oncommand="rdb.firefox.overlay.send_to_kindle();"
+        />
+    </toolbarpalette>
+
+    <!-- Don't try to load jquery here, use the loader functions provided by
+         firefox. For some reason it just causes everything else to fail -->
+    <script type="application/x-javascript" src="chrome://readability/content/lib/js/Keanu-0.2.js"/>
+
+    <script type="application/x-javascript" src="chrome://readability/content/lib/js/rdb.extensions.js"/>
+    <script type="application/x-javascript" src="chrome://readability/content/js/rdb.firefox.js"/>
+    <script type="application/x-javascript" src="chrome://readability/content/js/rdb.firefox.overlay.js"/>
+
+</overlay>

@@ -1,0 +1,129 @@
+% layout 'default';
+% title 'profile';
+
+%= include 'parts/profile-side'
+<div class="col-sm-10">
+<div class="row">
+	<div class="col-sm-6" style="border-right:1px solid #efefef;">
+		<h2>recent bkmrx</h2>
+		<% for my $bkx (@$bkmrx) { %>
+			<div class="bkmrk">
+				<h3><a href="<%= $bkx->{'url'} %>" rel="nofollow" title="<%= $bkx->{'title'} %>"><%== $bkx->{'disp_title'} %></a> <%== $bkx->{'source_icon'} %></h3>
+				<span class="url"><%= $bkx->{'disp_url'} %></span>
+				<div class="tags" style="padding-left:23px;">
+				<% for my $tag (@{$bkx->{'tags'}}) { %>
+					<span class='label label-info' style='margin:2px;' id='<%= $tag %>-<%= $bkx->{'b_id'} %>'><a href='?tag=<%= $tag %>' style='color:white;'><%= $tag %></a></span>
+				<% } %> 
+				</div>
+			</div>
+		<% } %>
+	</div>
+	<div class="col-sm-6">
+		<div id="d3"></div>
+		<h3>Top Domains</h3>
+		<div id="domains"></div>
+	</div>
+</div>
+</div>
+<script src="/js/d3.v2.js"></script>
+<script src="/js/d3.layout.cloud.js"></script>
+<script type="text/javascript">
+
+	var words_arr = [];
+	$.ajax({
+		url: '/ajax/top-tags',
+		data: "user_id=" + '<%= $user->{'_id'} %>',
+		dataType: "json",
+		type: 'GET',
+		success: function(result) {
+			$.each(result, function(arr, hash) {
+				$.each(hash, function(key, val) {
+					words_arr.push({"text" : key, "size" : val});
+				});
+			});
+
+			var w = 400;
+			var h = 400;
+
+			var fill = d3.scale.category20();
+			var fontSize = d3.scale.log().range([1, 15]);
+
+			d3.layout.cloud().size([w, h])
+				.words(words_arr)
+				.padding(3)
+				.rotate(function() { return ~~(Math.random() * 2) * 90; })
+				.font("Impact")
+				.fontSize(function(d) { return fontSize(+ d.size); })
+				.on("end", draw)
+				.start();
+
+			function draw(words) {
+				d3.select("#d3").append("svg")
+				.attr("width", w)
+				.attr("height", h)
+				.append("g")
+				.attr("transform", "translate(" + w / 2 + "," + h / 2 + ")")
+				.selectAll("text")
+				.data(words)
+				.enter().append("text")
+				.style("font-size", function(d) { return d.size + "px"; })
+				.style("font-family", "Impact")
+				.style("fill", function(d, i) { return fill(i); })
+				.attr("text-anchor", "middle")
+				.attr("transform", function(d) {
+					return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+				})
+				.text(function(d) { return d.text; })
+				.on("click", function (d, i){
+					// window.open(window.location + "/" + d.text, '_self');
+
+				})
+				.on("mouseover", function (){
+					d3.select(this).style("font-size", function(d) {
+						// $(this).css('cursor','pointer');
+						return d.size + 10 + "px";
+					});
+				})
+				.on("mouseout", function (){
+					d3.select(this).style("font-size", function(d) {
+						return d.size + "px";
+					});
+				});
+			}
+		}
+	});
+
+	$.ajax({
+		url: '/ajax/top-domains',
+		data: "user_id=" + '<%= $user->{'_id'} %>',
+		dataType: "json",
+		type: 'GET',
+		success: function(result) {
+			var domain_html = '<ol>';
+			$.each(result, function(arr, hash) {
+				$.each(hash, function(key, val) {
+					domain_html += '<li>' + key + ': ' + val + '</li>';
+				});
+			});
+			domain_html += '</ol>';
+
+			$('#domains').html(domain_html);
+		}
+	});
+	
+
+	
+</script>
+<!--script type="text/javascript">
+$("button#follow-user").click(function() {
+	$.ajax({
+		url: '/ajax/follow',
+		data: "follow=" + <%= $name %>,
+		dataType: "html",
+		success: function(result) {
+			$('button#follow-user').attr("class", "btn btn-success disabled");
+			$('button#follow-user').text("following!");
+		}
+	});
+});
+</script-->

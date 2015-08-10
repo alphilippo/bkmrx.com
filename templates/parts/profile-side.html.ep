@@ -1,0 +1,28 @@
+<div class="col-sm-2" style="border-right:1px solid #efefef;">
+	<h1><%= $name %></h1>
+	<a href="/<%= $name %>"><img src="<%= $gravatar %>" /></a>
+	<ul class="nav nav-list">
+		<% if ($type eq 'me') { %>
+			<%# <p><button class="btn disabled" id="follow-user">it's you!</button></p> %>
+		<% } elsif ($type eq 'friend') { %>
+			<%# <p><button class="btn btn-success disabled" id="follow-user">following!</button></p> %>
+		<% } elsif ($type eq 'stranger') { %>
+			<%# <p><button class="btn btn-primary" id="follow-user">follow</a></button> %>
+		<% } else { %>
+			<%# <p><a href='/login'>Login</a> to follow</p> %>
+		<% } %>
+		<!--li><a href="/<%= $name %>"><i class="fa fa-user"></i> <%= $name %></a></li-->
+		<% if ($user->{'_source'}->{'website'} ne '') { %>
+			<li><a href="<%= $user->{'_source'}->{'website'} %>"><i class="fa fa-globe"></i> website</a></li>
+		<% }
+		if ($user->{'_source'}->{'social'}->{'twitter'} ne '') { %>
+			<li><a href="https://twitter.com/<%= $user->{'_source'}->{'social'}->{'twitter'} %>"><i class="fa fa-twitter"></i> twitter</a></li>
+		<% }
+		if ($user->{'_source'}->{'social'}->{'github'} ne '') { %>
+			<li><a href="https://github.com/<%= $user->{'_source'}->{'social'}->{'github'} %>"><i class="fa fa-github"></i> github</a></li>
+		<% }
+		if ($user->{'_source'}->{'social'}->{'google_plus'} ne '') { %>
+			<li><a href="https://plus.google.com/+<%= $user->{'_source'}->{'social'}->{'google_plus'} %>"><i class="fa fa-google-plus"></i> google+</a></li>
+		<% } %>
+	</ul>
+</div>

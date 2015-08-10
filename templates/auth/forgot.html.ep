@@ -1,0 +1,35 @@
+% layout 'default';
+% title 'forgot password';
+
+<div class="row">
+	<div class="col-sm-12">
+		<legend>Enter your email to receive a password reset:</legend>
+		% if (my $msg = flash 'error') {
+			<div class="alert alert-danger">
+				%= $msg
+			</div>
+		% } elsif ($msg = flash 'msg') {
+			<div class="alert alert-info">
+				%= $msg
+			</div>
+		% }
+
+		<form method="post" id="login-form" class="form-horizontal" role="form">
+		<fieldset>
+		<input type="hidden" name="referer" value="<%= $self->tx->req->headers->referrer %>" />
+		<div class="form-group" id="tr-email">
+			<label for="email" class="control-label col-sm-3">Email</label>
+			<div class="col-sm-3">
+				<input type="email" name="email" id="email" class="form-control">
+			</div>
+		</div>
+		<div class="form-actions">
+			<label class="control-label col-sm-3"></label>
+			<div class="col-sm-3">
+				<button class="btn btn-primary" type="submit" id="submit">Reset password &raquo;</button>
+			</div>
+		</div>
+		</fieldset>
+		</form>
+	</div>
+</div>

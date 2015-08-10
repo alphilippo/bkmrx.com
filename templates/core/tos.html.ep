@@ -1,0 +1,11 @@
+% layout 'default';
+% title 'Terms of Service';
+<div class="row">
+	<div class="col-sm-8">
+		<h1>Terms of Service</h1>
+		<p>bkmrx.com is available as a free service. Bkmrx.com uses small text files called cookies 
+		in order to provide this service - usage of this website means you accept that.
+		Using the site and any associated widgets, plugins or bookmarklets is done entirely at your own risk and
+		in the unlikely event of anything bad happening bkmrx.com can accept no responsibility.</p>
+	</div>
+</div>

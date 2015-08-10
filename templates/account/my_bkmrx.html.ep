@@ -1,0 +1,143 @@
+% layout 'default';
+% title 'my bkmrx';
+	<div class="col-sm-2" style="border-right:1px solid #efefef">
+		<small style="color:gray"><em><%= $first_result %> - <%= $last_result %> of <%= $total_results %></em></small>
+		<div id="source_filter"></div>
+		<div id="to"></div>
+		<h5>Filter by tag</h5>
+		<form role="form" id="filterform">
+			<label for="filter" class="sr-only">Filter by tag</label>
+			<input type="text" id="filter" name="filter" class="form-control" />
+		</form>
+		<ul class="nav bkx-nav-tags" id="ajaxtags"></ul>
+	</div>
+	<div class="col-sm-9">
+		<p>&nbsp;</p>
+		% if (flash 'added') {
+			<div class="alert alert-info">Bookmark added!</div>
+		% }
+		<% if ($total_results == 0) { %>
+			<div class="alert alert-warning"><b>no bkmrx yet!</b><br><br>Why not add some using a
+			<a href="/addons">browser add-on</a>, <a href="/me/import">import your bookmarks</a>, 
+			<a href="/me/">link your social media profiles</a>, or click the '+ bkmrx' link in the navigation</div>
+		<% } else { %>
+			% if (scalar @$tags > 0) {
+				<ul class="breadcrumb">
+					% for my $t (@$tags) {
+						% my $j;
+						% if (scalar @$tags > 1) {
+							% $j = join('|', @$tags);
+							% $j = '/' . $j;
+						% }
+						
+						% $j =~ s!$t!!;
+						% $j =~ s!^/\|!/!;
+						% $j =~ s!\|$!!;
+						% $j =~ s!\|+!\|!g;
+						<%# % $j =~ s!!!; %>
+						<li class="active"><a href="/bkmrx/<%= $t %>"><i class="fa fa-tag"></i> <%= $t %></a>  <a href="/bkmrx<%= $j %>">&times;</a></li>
+					% }
+				</ul>
+			% }
+		
+		<div id="bkmrx-standard">
+			<% for my $bkx (@$bkmrx) { 
+				my $hidden = '';
+				my $lock;
+				if ($bkx->{'status'} == 1) {
+					$lock = '<i class="fa fa-lock bkx-lock" b_id="'. $bkx->{'b_id'} . '__' . $bkx->{'url_id'} . '"></i> ';
+				} else {
+					$lock = '<i class="fa fa-unlock bkx-unlock" b_id="'. $bkx->{'b_id'} . '__' . $bkx->{'url_id'} . '"></i> ';
+				}
+				my $from_icon = '';
+				if ($bkx->{'from'} eq 'twitter') {
+					$from_icon = " <i class='fa fa-twitter from_icon'></i>";
+				} elsif ($bkx->{'from'} eq 'github') {
+					$from_icon = " <i class='fa fa-github from_icon'></i>";
+				} elsif ($bkx->{'from'} eq 'google_plus') {
+					$from_icon = " <i class='fa fa-google-plus from_icon'></i>";
+				} elsif ($bkx->{'from'} eq 'reddit') {
+					$from_icon = " <i class='fa fa-reddit from_icon'></i>";
+				}
+			%>
+			<div class="bkmrk row" added="<%= $bkx->{'added'} %>" bkx="<%= $bkx->{'b_id'} %>">
+				<div class="col-sm-10" id="d<%= $bkx->{'b_id'} %>"<%= $hidden %>>
+					<!--div class="bkx-editor tip-wrench" bkx="<%= $bkx->{'b_id'} %>">
+						<i class="fa fa-wrench" style="color:gray;"></i>
+					</div-->
+					<div class="bkx-actions tip-lock"><%== $lock %></div>
+					<h3><a href="<%= $bkx->{'url'} %>" title="<%= $bkx->{'title'} %>"><%== $bkx->{'disp_title'} %></a> <%== $from_icon %></h3>
+					
+					<div class="bkx-wrapper">
+						<span class="desc"><%== $bkx->{'desc'} %></span>
+						<span class="url"><%= $bkx->{'disp_url'} %></span>
+					</div>
+					<div class="tags">
+						<i class="fa fa-tags"></i> 
+						<% for my $tag (@{$bkx->{'tags'}}) { %>
+							<span class='label label-info' style='margin:2px;' id='<%= $bkx->{'b_id'} %>__<%= $tag %>' url-id="<%= $bkx->{'url_id'} %>"><a href='/bkmrx/<%= $tag %>' style='color:white;'><%= $tag %></a> <a href='/ajax/delete-tag?tag=<%= $tag %>&amp;b_id=<%= $bkx->{'b_id'} %>&amp;url_id=<%= $bkx->{'url_id'} %>' style='color:white;' class='deltag'>&times;</a></span>
+						<% } %> 
+						<div id="added_tags_<%= $bkx->{'b_id'} %>" class="added_tags"></div> 
+						<span class="add_tag" id="<%= $bkx->{'b_id'} %>__<%= $bkx->{'url_id'} %>"></span>
+					</div>			
+				</div>
+				<div class="col-sm-2 bkx-editor" bkx="<%= $bkx->{'b_id'} %>">
+					<button class="btn btn-xs bkx-edit">edit</button>
+					<button class="btn btn-danger delbkmrk btn-xs">delete</button>
+				</div>
+			</div>
+			<% } %>
+		</div>
+		<div>
+		    <ul class="pagination" id="pagination">
+			    %== $pages
+		    </ul>
+		</div>
+		<% } %>
+	</div>
+
+<script type="text/javascript" src="/js/jquery.jeditable.js"></script>
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+	add_tags();
+	% if (param 'tag') {
+		updateTags('<%= param "tag" %>', 'y');
+	% } else {
+		updateTags();
+	% }
+    updateTo();
+    updateSources();
+% if (flash 'added') {
+	$('div#d<%= flash "added" %>').fadeIn(1600);
+% }
+    $('.bkx-editor').hide();
+    $(".bkmrk").hover(
+		function() {
+			$(this).find('.bkx-editor').fadeIn(250);
+		}, function() {
+			$(this).find('.bkx-editor').fadeOut(100);
+		}
+	);
+	
+	$('form#filterform').submit(function(e) {
+		e.preventDefault();
+	});
+});
+
+$('.bkx-edit').toggle(function(){
+		var bkx_id = $(this).parent().attr('bkx');
+		bkxEditOn(bkx_id);
+	},
+	function() {
+		var bkx_id = $(this).parent().attr('bkx');
+		bkxEditOff(bkx_id);
+	}
+);
+
+dateSeparate(<%== dumper $dates %>);
+
+$('div.tip-lock').tooltip({title: 'make private/public', placement: 'left'});
+
+</script>

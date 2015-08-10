@@ -1,0 +1,17 @@
+#bkmrx-toolbar-read { list-style-image: url("chrome://bkmrx/skin/img/read-large.png"); }
+#bkmrx-toolbar-read:hover { list-style-image: url("chrome://bkmrx/skin/img/read-large-hover.png"); }
+
+#bkmrx-toolbar-save { list-style-image: url("chrome://bkmrx/skin/img/save-large.png"); }
+#bkmrx-toolbar-save:hover { list-style-image: url("chrome://bkmrx/skin/img/save-large-hover.png"); }
+
+#bkmrx-toolbar-kindle { list-style-image: url("chrome://bkmrx/skin/img/icon-kindle-large.png"); }
+#bkmrx-toolbar-kindle:hover { list-style-image: url("chrome://bkmrx/skin/img/icon-kindle-large-hover.png"); }
+
+toolbar[iconsize="small"] #bkmrx-toolbar-read { list-style-image: url("chrome://bkmrx/skin/img/read-small.png"); }
+toolbar[iconsize="small"] #bkmrx-toolbar-read:hover { list-style-image: url("chrome://bkmrx/skin/img/read-small-hover.png"); }
+
+toolbar[iconsize="small"] #bkmrx-toolbar-save { list-style-image: url("chrome://bkmrx/skin/img/save-small.png"); }
+toolbar[iconsize="small"] #bkmrx-toolbar-save:hover { list-style-image: url("chrome://bkmrx/skin/img/save-small-hover.png"); }
+
+toolbar[iconsize="small"] #bkmrx-toolbar-kindle { list-style-image: url("chrome://bkmrx/skin/img/icon-kindle-small.png"); }
+toolbar[iconsize="small"] #bkmrx-toolbar-kindle:hover { list-style-image: url("chrome://bkmrx/skin/img/icon-kindle-small-hover.png"); }

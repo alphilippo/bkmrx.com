@@ -1,0 +1,5 @@
+content  bkmrx                                   content/
+skin     bkmrx   classic/1.0                     skin/
+
+overlay  chrome://browser/content/browser.xul          chrome://bkmrx/content/overlay.xul
+style	 chrome://global/content/customizeToolbar.xul  chrome://bkmrx/skin/css/overlay.css

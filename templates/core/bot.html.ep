@@ -1,0 +1,15 @@
+% layout 'default';
+% title 'bot';
+<div class="row">
+	<div class="col-sm-1">&nbsp;</div>
+	<div class="col-sm-7">
+		<h1>bkmrx.com bot</h1>
+		<p>The bkmrxbot is a process that occasionally will fetch the HTML content of pages to add to our search index so that people can discover your content via our search engine.</p>
+		<p>The bot can be identified using the following user agent string:</p>
+		<code>Mozilla/5.0 (compatible; BkmrxBot/0.1; +https://github.com/robhammond/bkmrx/bot)</code>
+		<p>The bot is configured in a way such that it should not cause any load issues on servers. However should you wish to exclude your site from our search index, you can
+		apply the following rule to your site's robots.txt file:</p>
+<pre>User-agent: bkmrxbot
+Disallow: /</pre>
+	</div>
+</div>

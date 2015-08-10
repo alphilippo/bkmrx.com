@@ -1,0 +1,5 @@
+% layout 'minimal';
+% title 'success!';
+
+<script>window.close()</script>
+<h3>Success!</h3>
