@@ -9,6 +9,7 @@
  - Use a server with Perl 5.10+ installed
  - Install ElasticSearch
  - Install the Perl modules listed in the INSTALL file
+ - Run initialise-es-db.pl file in root folder to set up ElasticSearch indices
  - Fill in required credentials in bkx_mojo.conf file
  - Run server!
 
@@ -18,9 +19,9 @@ You need a twitter API key in order for the twitter integration to work. When yo
 
 ### Setting up the search engine
 
-*Be polite to webmasters: add a contact email address in the _$user___agent_ variable in the _bin/crawler.pl_ script.*
+*Be polite to webmasters: add a contact email address in the _$user___agent_ variable in the _bin/mojo-crawler.pl_ script.*
 
-On first run, you need to create the search index, which is stored in the _web-index/_ folder. In order to avoid any index duplication, I recommend installing the site, adding a few bookmarks, then running the _bin/crawler.pl_ script from the command line with the **--create=1** option.
+On first run, you need to create the search index, which is stored in the _web-index/_ folder. In order to avoid any index duplication, I recommend installing the site, adding a few bookmarks, then running the _bin/mojo-crawler.pl_ script from the command line with the **--create=1** option.
 
 This tells the crawler to create the index; only do this once (or delete the contents of the _web-index/_ folder), otherwise your search index will start showing duplicate results.
 
@@ -33,7 +34,7 @@ Add the following lines to the crontab :
  - 0 0 * * * perl
    /_[app-dir]_/bin/fetch-twitter-api.pl
  - 0 0 * * * perl /_[app-dir]_/bin/fetch-github.pl
- - */4 * * * * perl /_[app-dir]_/bin/crawler.pl
+ - */4 * * * * perl /_[app-dir]_/bin/mojo-crawler.pl
 
 You can view a working version of the software at [bkmrx.com][7]
 
