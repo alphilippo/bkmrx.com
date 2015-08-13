@@ -7,7 +7,7 @@
 ## Setup
 
  - Use a server with Perl 5.10+ installed
- - Install ElasticSearch
+ - Install ElasticSearch (version >= 1.1 but < 1.3)
  - Install the Perl modules listed in the INSTALL file
  - Run initialise-es-db.pl file in root folder to set up ElasticSearch indices
  - Fill in required credentials in bkx_mojo.conf file

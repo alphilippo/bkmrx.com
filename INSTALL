@@ -4,7 +4,7 @@ Prerequisites:
 --------------
 
  - Perl 5.10+
- - Elasticsearch 1.1+
+ - Elasticsearch 1.1 (or up to 1.3)
 
 Perl Modules:
 
