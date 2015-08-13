@@ -30,10 +30,13 @@ Perl Modules:
  - URI::Escape
  - WWW::Mechanize
  - Mojolicious::Plugin::Bcrypt
+ - Mojolicious::Plugin::Web::Auth
+ - Mojolicious::Plugin::AssetPack
+ - Search::Query
 
 Or, in one big CPAN Minus command:
 
-cpanm Modern::Perl AnyEvent AnyEvent::HTTP File::Spec::Functions Getopt::Long Time::HiRes File::Path Digest::MD5 Search::Elasticsearch HTML::Entities Date::Manip Date::Calc Digest::SHA1 HTML::TreeBuilder::XPath DateTime Net::Twitter WWW::Mechanize Data::Validate::Domain Data::Validate::IP Net::IP::Match::Regexp List::Util String::Truncate List::MoreUtils Digest::MD5 Data::Random Tie::IxHash String::Random URI::Encode Mojolicious::Plugin::Bcrypt Email::MIME Email::Sender::Simple
+cpanm Modern::Perl AnyEvent AnyEvent::HTTP File::Spec::Functions Getopt::Long Time::HiRes File::Path Digest::MD5 Search::Elasticsearch HTML::Entities Date::Manip Date::Calc Digest::SHA1 HTML::TreeBuilder::XPath DateTime Net::Twitter WWW::Mechanize Data::Validate::Domain Data::Validate::IP Net::IP::Match::Regexp List::Util String::Truncate List::MoreUtils Digest::MD5 Data::Random Tie::IxHash String::Random URI::Encode Mojolicious::Plugin::Bcrypt Email::MIME Email::Sender::Simple Mojolicious::Plugin::Web::Auth Mojolicious::Plugin::AssetPack Search::Query
 
 Setting up:
 -----------
